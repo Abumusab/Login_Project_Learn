@@ -33,13 +33,13 @@
             // 
             // btnSignout
             // 
-            this.btnSignout.Location = new System.Drawing.Point(354, 422);
+            this.btnSignout.Location = new System.Drawing.Point(362, 422);
             this.btnSignout.Name = "btnSignout";
             this.btnSignout.Size = new System.Drawing.Size(93, 31);
             this.btnSignout.TabIndex = 0;
             this.btnSignout.Text = "تسجيل خروج";
             this.btnSignout.UseVisualStyleBackColor = true;
-            this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click_1);
+            this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
             // 
             // frmFirstPage
             // 

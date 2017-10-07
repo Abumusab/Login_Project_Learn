@@ -14,8 +14,17 @@ namespace register_login_learn
 
     public partial class frmLogin : Form
     {
-        ArrayList userList;
 
+
+        /// <summary>
+        /// الطريقة الأفضل لاظهار و اغلاق الفورمس
+        /// https://stackoverflow.com/questions/4123347/get-back-hidden-form-from-another-form
+        /// في هذه الطريق لن يتم انشاء فورم تسجيل الدخول مجدداً كل مرة
+        /// نرجع فيها من الفورم الثاني
+        /// بهذه الحالة تبقى البيانات مخزنة في قائمة تخزين المستخدمين المسجلين
+        /// </summary>
+
+        ArrayList userList;
         bool loginUserOK;
         bool regiserUserOK = true;
         bool regNameOK, regPassOK, regPassSureOK, regEmailOK;
@@ -28,7 +37,7 @@ namespace register_login_learn
         {
 
             userList = new ArrayList();
-        
+
             btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
 
         }
@@ -52,44 +61,36 @@ namespace register_login_learn
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
             //تم حل المشكلة بإزالة
             //do while
-
-
 
             foreach (CUser user in userList)
             {
                 loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
             }
 
-
-
-
             if (loginUserOK)
             {
-                
-                  //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
-                 
-                if (loginUserOK)
-                {
-                    this.Hide();
-                }
+
+                //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
+
+                //this.Hide();
+                frmFirstPage obj2 = new frmFirstPage();
+                obj2.RefToForm1 = this;
+                this.Visible = false;
 
                 // عرض رسالة بعد تسجيل دخولك
                 MessageBox.Show("مرحباً بك , " + txtLogin.Text,//الرسالة
                   "تم تسجيل دخولك بنجاح",//العنوان
                   MessageBoxButtons.OK,//زر موافق
                   MessageBoxIcon.Asterisk // الايقونة 
-
                   );
-
                 // اظهار الفورم بعد التسجيل الدخول
+                obj2.Show();
 
-                frmFirstPage frm2 = new frmFirstPage();
-                frm2.ShowDialog();
-
-
+                //frmFirstPage frm2 = new frmFirstPage();
+                //frm2.ShowDialog();
 
             }
             else
@@ -100,11 +101,9 @@ namespace register_login_learn
                  MessageBoxButtons.OK,//زر موافق
                  MessageBoxIcon.Error // الايقونة 
                  );
-                
+
             }
 
-
-            
 
         }
 
@@ -159,11 +158,11 @@ namespace register_login_learn
 
         // vv تم إضافة زر رجوع لقائمة تسجيل الدخول vv
         //________________________________________________________ 
-        private void btnBack_Click(object sender, EventArgs e)     
-        {                                                               
-            pnlRegister.Visible = false;                           
-            pnlLogin.Visible = true;                               
-        }                                                         
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            pnlRegister.Visible = false;
+            pnlLogin.Visible = true;
+        }
         //_______________________________________________________
         //زر تسجيل الدخول معطل حتى تحقق الشروط
         private void txtLogin_TextChanged(object sender, EventArgs e)
@@ -186,7 +185,7 @@ namespace register_login_learn
             }
         }
 
-        
+
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
