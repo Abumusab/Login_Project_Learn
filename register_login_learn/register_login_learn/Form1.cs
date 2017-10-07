@@ -11,13 +11,14 @@ using System.Windows.Forms;
 
 namespace register_login_learn
 {
-    //من أنتم!
+
     public partial class frmLogin : Form
     {
-    //ننن
         ArrayList userList;
-        bool userOK;
 
+        bool loginUserOK;
+        bool regiserUserOK = true;
+        bool regNameOK, regPassOK, regPassSureOK, regEmailOK;
         public frmLogin()
         {
             InitializeComponent();
@@ -27,39 +28,79 @@ namespace register_login_learn
         {
 
             userList = new ArrayList();
+        
+            btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+
         }
 
         private void btnRegister2_Click(object sender, EventArgs e)
         {
+
+            // اضافة اوبجكت جديد من الكلاس يوزر لليست
             userList.Add(new CUser(txtUserNameReg.Text, txtPassReg.Text, txtEmailReg.Text));
 
+            //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
             pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;
             pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
-           // pnlRegister.Visible = true;
-          //  pnlLogin.Visible = false;
-
+            //افراغ كل خانات التسجيل
+            txtUserNameReg.Text = txtPassReg.Text = txtPassReg2.Text = txtEmailReg.Text = "";
+            //اعادة الوان خلفية الخانات إلى أبيض
+            txtUserNameReg.BackColor = txtPassReg.BackColor = txtPassReg2.BackColor = txtEmailReg.BackColor = Color.White;
+            //تعطيل زر التسجيل الجديد مجدداً
+            btnRegister2.Enabled = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            do
+            
+            //تم حل المشكلة بإزالة
+            //do while
+
+
+
+            foreach (CUser user in userList)
             {
-                foreach (CUser مستخدم in userList)
+                loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
+            }
+
+
+
+
+            if (loginUserOK)
+            {
+                
+                  //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
+                 
+                if (loginUserOK)
                 {
-                    userOK = (مستخدم.UserName == txtLogin.Text) ? true : false;
+                    this.Hide();
                 }
-            } while (userOK == false);
 
+                // عرض رسالة بعد تسجيل دخولك
+                MessageBox.Show("مرحباً بك , " + txtLogin.Text,//الرسالة
+                  "تم تسجيل دخولك بنجاح",//العنوان
+                  MessageBoxButtons.OK,//زر موافق
+                  MessageBoxIcon.Asterisk // الايقونة 
 
+                  );
 
-            if (userOK)
-            {
+                // اظهار الفورم بعد التسجيل الدخول
+
                 frmFirstPage frm2 = new frmFirstPage();
                 frm2.ShowDialog();
+
+
+
             }
             else
             {
-                MessageBox.Show("غلط");
+                // رسالة البيانات إذا طلعت خطاء
+                MessageBox.Show("اسم المستخدم او كلمة المرور خطاء ",//الرسالة
+                 "Error!",//العنوان
+                 MessageBoxButtons.OK,//زر موافق
+                 MessageBoxIcon.Error // الايقونة 
+                 );
+                
             }
 
 
@@ -72,6 +113,130 @@ namespace register_login_learn
             pnlRegister.Visible = true;
             pnlLogin.Visible = false;
 
+        }
+
+        private void txtEmailReg_TextChanged(object sender, EventArgs e)
+        {
+            //التحقق من صحة الإيميل استخدام هذه الطريقة بإضافة ميثود خاص 
+            //https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address
+            if (!String.IsNullOrEmpty(txtEmailReg.Text))
+            {
+                //تعيين خلفية خانة الإيميل اخضر اذا كانت نتيجة ميثود التحقق من الإيميل صحيحة و إلا تعيينها أحمر
+                txtEmailReg.BackColor = (IsValidEmail(txtEmailReg.Text)) ? Color.LightGreen : Color.Red;
+
+                //الإيميل صحيح لو كانت خلفية النص خضراءو إلا أحمر
+                regEmailOK = (txtEmailReg.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
+                btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
+
+            }
+        }
+
+        private void txtUserNameReg_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtUserNameReg.Text))
+            {
+
+                // البحث عن المستخدم في قائمة التخزين
+                foreach (CUser مستخدم in userList)
+                {
+                    //اسم تسجيل المستخدم صحيح في حال لم يكن موجود في قائمة التخزين
+                    regiserUserOK = (مستخدم.UserName == txtUserNameReg.Text) ? false : true;
+                }
+
+                //خلفية خانة اسم التسجل خطراء حين يكون عدد حروف الاسم اكثر من 5 و ليس موجود في قائمة التخزين
+                txtUserNameReg.BackColor = (regiserUserOK && txtUserNameReg.Text.Length > 5) ? Color.LightGreen : Color.Red;
+
+                //الأسم صحيح حين تكون الخلفية خضراء
+                regNameOK = (txtUserNameReg.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
+                btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
+
+            }
+        }
+
+        // vv تم إضافة زر رجوع لقائمة تسجيل الدخول vv
+        //________________________________________________________ 
+        private void btnBack_Click(object sender, EventArgs e)     
+        {                                                               
+            pnlRegister.Visible = false;                           
+            pnlLogin.Visible = true;                               
+        }                                                         
+        //_______________________________________________________
+        //زر تسجيل الدخول معطل حتى تحقق الشروط
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtLogin.Text))
+            {
+                //خلفية خانة اسم المستخدم خضراء حين يكون عدد حروف الاسم اكثر من 5 
+                txtLogin.BackColor = (txtLogin.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+            }
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtLogin.Text))
+            {
+                //خلفية خانة كلمة السر خضراء حين يكون عدد حروف كلمة السر اكثر من 5 
+                txtPass.BackColor = (txtPass.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+            }
+        }
+
+        
+
+        private void txtPassReg2_TextChanged(object sender, EventArgs e)
+        {
+
+            //حين تكون خانة الباسس و خانة تأكيد الباس غير فارغتين
+            if (!String.IsNullOrEmpty(txtPassReg2.Text) && !String.IsNullOrEmpty(txtPassReg.Text))
+            {
+                //تغيير خلفية خانة تأكيد الباس الى اخضر في حال كان النص داخلها مطابق للنص في خانة الباس
+                txtPassReg2.BackColor = (txtPassReg2.Text == txtPassReg.Text) ? Color.LightGreen : Color.Red;
+
+                //تأكيد الباس صحيح لو خلفيت خانته خضراء
+                regPassSureOK = (txtPassReg2.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
+                btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private void txtPassReg_TextChanged(object sender, EventArgs e)
+        {
+            //حين تكون خانة الباس غير فارغة من النص
+            if (!String.IsNullOrEmpty(txtPassReg.Text))
+            {
+                txtPassReg.BackColor = (txtPassReg.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                regPassOK = (txtPassReg.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
+                btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
+
+            }
+        }
+
+        // الميثود الخاص للتحقق من الإيميل 
+        //لا يعمل بشكل جميل هناك حلول أفضل مثل استخدام الريجكس
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -21,5 +21,19 @@ namespace register_login_learn
         private void frmFirstPage_FormClosed(object sender, FormClosedEventArgs e)
         {
         }
+
+        private void btnSignout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new frmLogin().ShowDialog();
+
+
+        }
+
+        private void btnSignout_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new frmLogin().ShowDialog();
+        }
     }
 }

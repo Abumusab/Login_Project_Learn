@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlRegister = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.txtEmailReg = new System.Windows.Forms.TextBox();
             this.txtPassReg2 = new System.Windows.Forms.TextBox();
             this.txtPassReg = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             // 
             // pnlRegister
             // 
+            this.pnlRegister.Controls.Add(this.btnBack);
             this.pnlRegister.Controls.Add(this.txtEmailReg);
             this.pnlRegister.Controls.Add(this.txtPassReg2);
             this.pnlRegister.Controls.Add(this.txtPassReg);
@@ -66,26 +68,41 @@
             this.pnlRegister.TabIndex = 0;
             this.pnlRegister.Visible = false;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(129, 449);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(68, 27);
+            this.btnBack.TabIndex = 10;
+            this.btnBack.Text = "رجوع";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // txtEmailReg
             // 
             this.txtEmailReg.Location = new System.Drawing.Point(159, 183);
             this.txtEmailReg.Name = "txtEmailReg";
             this.txtEmailReg.Size = new System.Drawing.Size(134, 20);
             this.txtEmailReg.TabIndex = 9;
+            this.txtEmailReg.TextChanged += new System.EventHandler(this.txtEmailReg_TextChanged);
             // 
             // txtPassReg2
             // 
             this.txtPassReg2.Location = new System.Drawing.Point(159, 155);
             this.txtPassReg2.Name = "txtPassReg2";
+            this.txtPassReg2.PasswordChar = '*';
             this.txtPassReg2.Size = new System.Drawing.Size(134, 20);
             this.txtPassReg2.TabIndex = 8;
+            this.txtPassReg2.TextChanged += new System.EventHandler(this.txtPassReg2_TextChanged);
             // 
             // txtPassReg
             // 
             this.txtPassReg.Location = new System.Drawing.Point(159, 129);
             this.txtPassReg.Name = "txtPassReg";
+            this.txtPassReg.PasswordChar = '*';
             this.txtPassReg.Size = new System.Drawing.Size(134, 20);
             this.txtPassReg.TabIndex = 7;
+            this.txtPassReg.TextChanged += new System.EventHandler(this.txtPassReg_TextChanged);
             // 
             // txtUserNameReg
             // 
@@ -93,6 +110,7 @@
             this.txtUserNameReg.Name = "txtUserNameReg";
             this.txtUserNameReg.Size = new System.Drawing.Size(134, 20);
             this.txtUserNameReg.TabIndex = 6;
+            this.txtUserNameReg.TextChanged += new System.EventHandler(this.txtUserNameReg_TextChanged);
             // 
             // label4
             // 
@@ -136,7 +154,8 @@
             // 
             // btnRegister2
             // 
-            this.btnRegister2.Location = new System.Drawing.Point(120, 316);
+            this.btnRegister2.Enabled = false;
+            this.btnRegister2.Location = new System.Drawing.Point(129, 315);
             this.btnRegister2.Name = "btnRegister2";
             this.btnRegister2.Size = new System.Drawing.Size(162, 43);
             this.btnRegister2.TabIndex = 1;
@@ -156,6 +175,7 @@
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(364, 479);
             this.pnlLogin.TabIndex = 1;
+
             // 
             // btnCreate
             // 
@@ -171,8 +191,10 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(201, 131);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(134, 20);
             this.txtPass.TabIndex = 9;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
             // txtLogin
             // 
@@ -180,6 +202,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(134, 20);
             this.txtLogin.TabIndex = 8;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
             // label5
             // 
@@ -249,6 +272,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnBack;
     }
 }
 
