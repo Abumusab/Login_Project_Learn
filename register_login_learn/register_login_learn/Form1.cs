@@ -49,6 +49,8 @@ namespace register_login_learn
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // هنا يجيب بعد التحقق من ان اسم المستخدم موجود
+            //التحقق من أن الباسس المكتوب هو الباس التابع للاسم
             do
             {
                 foreach (CUser مستخدم in userList)
