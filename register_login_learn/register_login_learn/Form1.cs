@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace register_login_learn
 {
-    //من أنتم!
+   
     public partial class frmLogin : Form
     {
         ArrayList userList;
@@ -49,6 +49,7 @@ namespace register_login_learn
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //توجد مشكلة هنا(إذا ظغطت تسجيل الدخول بعد إدخال إسم وباس غلط يتجمد البرنامج ولا يظهر لك رسالة غلط
             // هنا يجيب بعد التحقق من ان اسم المستخدم موجود
             //التحقق من أن الباسس المكتوب هو الباس التابع للاسم
             do
@@ -136,6 +137,7 @@ namespace register_login_learn
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
+           
             //حين تكون خانة الباسس و خانة تأكيد الباس غير فارغتين
             if (!String.IsNullOrEmpty(txtPassReg2.Text) && !String.IsNullOrEmpty(txtPassReg.Text))
             {
