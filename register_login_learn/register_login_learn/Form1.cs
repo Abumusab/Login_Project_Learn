@@ -51,23 +51,49 @@ namespace register_login_learn
         {
             //تم حل المشكلة بإزالة
             //do while
+
             
+
                 foreach (CUser user in userList)
                 {
                     loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
                 }
-            
 
-
+                
+           
 
             if (loginUserOK)
             {
+                /*
+                 * بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
+                 */
+                if (loginUserOK)
+                {
+                    this.Hide();
+                }
+
+                // عرض رسالة بعد تسجيل دخولك
+                MessageBox.Show("مرحباً بك , " + txtLogin.Text,//الرسالة
+                  "تم تسجيل دخولك بنجاح",//العنوان
+                  MessageBoxButtons.OK,//زر موافق
+                  MessageBoxIcon.Asterisk // الايقونة 
+                  );
+
+                // اظهار الفورم بعد التسجيل الدخول
                 frmFirstPage frm2 = new frmFirstPage();
                 frm2.ShowDialog();
+                
+
+                
             }
             else
             {
-                MessageBox.Show("أسم المستخدم أو كلمة المرور خطاء");
+                // رسالة البيانات إذا طلعت خطاء
+                MessageBox.Show("اسم المستخدم او كلمة المرور خطاء ",//الرسالة
+                 "Error!",//العنوان
+                 MessageBoxButtons.OK,//زر موافق
+                 MessageBoxIcon.Error // الايقونة 
+                 );
             }
 
 
@@ -99,7 +125,7 @@ namespace register_login_learn
 
             }
         }
-
+        
         private void txtUserNameReg_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtUserNameReg.Text))
