@@ -9,7 +9,9 @@ namespace register_login_learn
     class CUser
     {
         private string _userName;
-
+        /// <summary>
+        /// الأمة العربية المتحدة !!
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
