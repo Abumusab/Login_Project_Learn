@@ -125,6 +125,15 @@ namespace register_login_learn
             }
         }
 
+        // vv تم إضافة زر رجوع لقائمة تسجيل الدخول vv
+        //__________________________________________________________
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            pnlRegister.Visible = false;
+            pnlLogin.Visible = true;
+        }
+        //__________________________________________________________
+
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
             //حين تكون خانة الباسس و خانة تأكيد الباس غير فارغتين

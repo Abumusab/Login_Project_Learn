@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlRegister = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.txtEmailReg = new System.Windows.Forms.TextBox();
             this.txtPassReg2 = new System.Windows.Forms.TextBox();
             this.txtPassReg = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             // 
             // pnlRegister
             // 
+            this.pnlRegister.Controls.Add(this.btnBack);
             this.pnlRegister.Controls.Add(this.txtEmailReg);
             this.pnlRegister.Controls.Add(this.txtPassReg2);
             this.pnlRegister.Controls.Add(this.txtPassReg);
@@ -65,6 +67,16 @@
             this.pnlRegister.Size = new System.Drawing.Size(320, 479);
             this.pnlRegister.TabIndex = 0;
             this.pnlRegister.Visible = false;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(129, 449);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(68, 27);
+            this.btnBack.TabIndex = 10;
+            this.btnBack.Text = "رجوع";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // txtEmailReg
             // 
@@ -143,7 +155,7 @@
             // btnRegister2
             // 
             this.btnRegister2.Enabled = false;
-            this.btnRegister2.Location = new System.Drawing.Point(120, 316);
+            this.btnRegister2.Location = new System.Drawing.Point(129, 315);
             this.btnRegister2.Name = "btnRegister2";
             this.btnRegister2.Size = new System.Drawing.Size(162, 43);
             this.btnRegister2.TabIndex = 1;
@@ -256,6 +268,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnBack;
     }
 }
 
