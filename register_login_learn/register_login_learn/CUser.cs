@@ -24,7 +24,14 @@ namespace register_login_learn
             set { _password = value; }
         }
 
-        string _Email;
+
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; }
+        }
 
         public CUser(string user,string pass ,string email)
         {
