@@ -31,12 +31,12 @@ namespace register_login_learn
 
         private void btnRegister2_Click(object sender, EventArgs e)
         {
+            // اضافة اوبجكت جديد من الكلاس يوزر لليست
             userList.Add(new CUser(txtUserNameReg.Text, txtPassReg.Text, txtEmailReg.Text));
 
+            //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
             pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;
             pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
-           // pnlRegister.Visible = true;
-          //  pnlLogin.Visible = false;
 
         }
 
