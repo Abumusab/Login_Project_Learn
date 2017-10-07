@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace register_login_learn
 {
-   
+
     public partial class frmLogin : Form
     {
         ArrayList userList;
@@ -52,15 +52,15 @@ namespace register_login_learn
             //تم حل المشكلة بإزالة
             //do while
 
-            
 
-                foreach (CUser user in userList)
-                {
-                    loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
-                }
 
-                
-           
+            foreach (CUser user in userList)
+            {
+                loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
+            }
+
+
+
 
             if (loginUserOK)
             {
@@ -77,14 +77,16 @@ namespace register_login_learn
                   "تم تسجيل دخولك بنجاح",//العنوان
                   MessageBoxButtons.OK,//زر موافق
                   MessageBoxIcon.Asterisk // الايقونة 
+
                   );
 
                 // اظهار الفورم بعد التسجيل الدخول
+
                 frmFirstPage frm2 = new frmFirstPage();
                 frm2.ShowDialog();
-                
 
-                
+
+
             }
             else
             {
@@ -125,12 +127,12 @@ namespace register_login_learn
 
             }
         }
-        
+
         private void txtUserNameReg_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtUserNameReg.Text))
             {
-                
+
                 // البحث عن المستخدم في قائمة التخزين
                 foreach (CUser مستخدم in userList)
                 {
@@ -161,7 +163,7 @@ namespace register_login_learn
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
-           
+
             //حين تكون خانة الباسس و خانة تأكيد الباس غير فارغتين
             if (!String.IsNullOrEmpty(txtPassReg2.Text) && !String.IsNullOrEmpty(txtPassReg.Text))
             {
