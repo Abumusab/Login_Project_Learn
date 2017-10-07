@@ -49,17 +49,14 @@ namespace register_login_learn
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //أنا سليمان يوجد خطاء
-            //توجد مشكلة هنا(إذا ظغطت تسجيل الدخول بعد إدخال إسم وباس غلط يتجمد البرنامج ولا يظهر لك رسالة غلط
-            // هنا يجيب بعد التحقق من ان اسم المستخدم موجود
-            //التحقق من أن الباسس المكتوب هو الباس التابع للاسم
-            do
-            {
-                foreach (CUser مستخدم in userList)
+            //تم حل المشكلة بإزالة
+            //do while
+            
+                foreach (CUser user in userList)
                 {
-                    loginUserOK = (مستخدم.UserName == txtLogin.Text) ? true : false;
+                    loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
                 }
-            } while (loginUserOK == false);
+            
 
 
 
@@ -70,7 +67,7 @@ namespace register_login_learn
             }
             else
             {
-                MessageBox.Show("غلط");
+                MessageBox.Show("أسم المستخدم أو كلمة المرور خطاء");
             }
 
 
