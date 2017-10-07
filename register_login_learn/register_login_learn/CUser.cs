@@ -16,8 +16,14 @@ namespace register_login_learn
             set { _userName = value; }
         }
 
+        private string _password;
 
-        string _password;
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
+
         string _Email;
 
         public CUser(string user,string pass ,string email)
