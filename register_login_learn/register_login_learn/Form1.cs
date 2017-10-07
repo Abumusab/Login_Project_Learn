@@ -39,8 +39,11 @@ namespace register_login_learn
             //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
             pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;
             pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
+            //افراغ كل خانات التسجيل
             txtUserNameReg.Text = txtPassReg.Text = txtPassReg2.Text = txtEmailReg.Text = "";
+            //اعادة الوان خلفية الخانات إلى أبيض
             txtUserNameReg.BackColor = txtPassReg.BackColor = txtPassReg2.BackColor = txtEmailReg.BackColor = Color.White;
+            //تعطيل زر التسجيل الجديد مجدداً
             btnRegister2.Enabled = false;
         }
 
@@ -80,12 +83,17 @@ namespace register_login_learn
 
         private void txtEmailReg_TextChanged(object sender, EventArgs e)
         {
+            //التحقق من صحة الإيميل استخدام هذه الطريقة بإضافة ميثود خاص 
             //https://stackoverflow.com/questions/1365407/c-sharp-code-to-validate-email-address
             if (!String.IsNullOrEmpty(txtEmailReg.Text))
             {
+                //تعيين خلفية خانة الإيميل اخضر اذا كانت نتيجة ميثود التحقق من الإيميل صحيحة و إلا تعيينها أحمر
                 txtEmailReg.BackColor = (IsValidEmail(txtEmailReg.Text)) ? Color.LightGreen : Color.Red;
+
+                //الإيميل صحيح لو كانت خلفية النص خضراءو إلا أحمر
                 regEmailOK = (txtEmailReg.BackColor == Color.LightGreen) ? true : false;
 
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
                 btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
 
             }
@@ -95,14 +103,21 @@ namespace register_login_learn
         {
             if (!String.IsNullOrEmpty(txtUserNameReg.Text))
             {
-
+                
+                // البحث عن المستخدم في قائمة التخزين
                 foreach (CUser مستخدم in userList)
                 {
+                    //اسم تسجيل المستخدم صحيح في حال لم يكن موجود في قائمة التخزين
                     regiserUserOK = (مستخدم.UserName == txtUserNameReg.Text) ? false : true;
                 }
+
+                //خلفية خانة اسم التسجل خطراء حين يكون عدد حروف الاسم اكثر من 5 و ليس موجود في قائمة التخزين
                 txtUserNameReg.BackColor = (regiserUserOK && txtUserNameReg.Text.Length > 5) ? Color.LightGreen : Color.Red;
+
+                //الأسم صحيح حين تكون الخلفية خضراء
                 regNameOK = (txtUserNameReg.BackColor == Color.LightGreen) ? true : false;
 
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
                 btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
 
             }
@@ -110,10 +125,16 @@ namespace register_login_learn
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
+            //حين تكون خانة الباسس و خانة تأكيد الباس غير فارغتين
             if (!String.IsNullOrEmpty(txtPassReg2.Text) && !String.IsNullOrEmpty(txtPassReg.Text))
             {
+                //تغيير خلفية خانة تأكيد الباس الى اخضر في حال كان النص داخلها مطابق للنص في خانة الباس
                 txtPassReg2.BackColor = (txtPassReg2.Text == txtPassReg.Text) ? Color.LightGreen : Color.Red;
+
+                //تأكيد الباس صحيح لو خلفيت خانته خضراء
                 regPassSureOK = (txtPassReg2.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
                 btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
 
             }
@@ -125,16 +146,20 @@ namespace register_login_learn
 
         private void txtPassReg_TextChanged(object sender, EventArgs e)
         {
+            //حين تكون خانة الباس غير فارغة من النص
             if (!String.IsNullOrEmpty(txtPassReg.Text))
             {
                 txtPassReg.BackColor = (txtPassReg.Text.Length > 5) ? Color.LightGreen : Color.Red;
                 regPassOK = (txtPassReg.BackColor == Color.LightGreen) ? true : false;
+
+                //تفعيل زر التسجيل الجديد في حال توفرت كل الشروط
                 btnRegister2.Enabled = (regNameOK && regPassOK && regPassSureOK && regEmailOK) ? true : false;
 
             }
         }
 
-
+        // الميثود الخاص للتحقق من الإيميل 
+        //لا يعمل بشكل جميل هناك حلول أفضل مثل استخدام الريجكس
         bool IsValidEmail(string email)
         {
             try
