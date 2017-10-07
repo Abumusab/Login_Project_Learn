@@ -175,6 +175,7 @@
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(364, 479);
             this.pnlLogin.TabIndex = 1;
+
             // 
             // btnCreate
             // 
@@ -193,6 +194,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(134, 20);
             this.txtPass.TabIndex = 9;
+            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
             // txtLogin
             // 
@@ -200,6 +202,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(134, 20);
             this.txtLogin.TabIndex = 8;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
             // label5
             // 

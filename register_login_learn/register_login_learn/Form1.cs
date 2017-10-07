@@ -28,6 +28,9 @@ namespace register_login_learn
         {
 
             userList = new ArrayList();
+        
+            btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+
         }
 
         private void btnRegister2_Click(object sender, EventArgs e)
@@ -49,6 +52,7 @@ namespace register_login_learn
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             //تم حل المشكلة بإزالة
             //do while
 
@@ -64,9 +68,9 @@ namespace register_login_learn
 
             if (loginUserOK)
             {
-                /*
-                 * بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
-                 */
+                
+                  //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
+                 
                 if (loginUserOK)
                 {
                     this.Hide();
@@ -96,10 +100,11 @@ namespace register_login_learn
                  MessageBoxButtons.OK,//زر موافق
                  MessageBoxIcon.Error // الايقونة 
                  );
+                
             }
 
 
-
+            
 
         }
 
@@ -153,13 +158,35 @@ namespace register_login_learn
         }
 
         // vv تم إضافة زر رجوع لقائمة تسجيل الدخول vv
-        //__________________________________________________________
-        private void btnBack_Click(object sender, EventArgs e)
+        //________________________________________________________ 
+        private void btnBack_Click(object sender, EventArgs e)     
+        {                                                               
+            pnlRegister.Visible = false;                           
+            pnlLogin.Visible = true;                               
+        }                                                         
+        //_______________________________________________________
+        //زر تسجيل الدخول معطل حتى تحقق الشروط
+        private void txtLogin_TextChanged(object sender, EventArgs e)
         {
-            pnlRegister.Visible = false;
-            pnlLogin.Visible = true;
+            if (!String.IsNullOrEmpty(txtLogin.Text))
+            {
+                //خلفية خانة اسم المستخدم خضراء حين يكون عدد حروف الاسم اكثر من 5 
+                txtLogin.BackColor = (txtLogin.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+            }
         }
-        //__________________________________________________________
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtLogin.Text))
+            {
+                //خلفية خانة كلمة السر خضراء حين يكون عدد حروف كلمة السر اكثر من 5 
+                txtPass.BackColor = (txtPass.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+            }
+        }
+
+        
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
