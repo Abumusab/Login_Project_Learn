@@ -72,20 +72,25 @@
             this.txtEmailReg.Name = "txtEmailReg";
             this.txtEmailReg.Size = new System.Drawing.Size(134, 20);
             this.txtEmailReg.TabIndex = 9;
+            this.txtEmailReg.TextChanged += new System.EventHandler(this.txtEmailReg_TextChanged);
             // 
             // txtPassReg2
             // 
             this.txtPassReg2.Location = new System.Drawing.Point(159, 155);
             this.txtPassReg2.Name = "txtPassReg2";
+            this.txtPassReg2.PasswordChar = '*';
             this.txtPassReg2.Size = new System.Drawing.Size(134, 20);
             this.txtPassReg2.TabIndex = 8;
+            this.txtPassReg2.TextChanged += new System.EventHandler(this.txtPassReg2_TextChanged);
             // 
             // txtPassReg
             // 
             this.txtPassReg.Location = new System.Drawing.Point(159, 129);
             this.txtPassReg.Name = "txtPassReg";
+            this.txtPassReg.PasswordChar = '*';
             this.txtPassReg.Size = new System.Drawing.Size(134, 20);
             this.txtPassReg.TabIndex = 7;
+            this.txtPassReg.TextChanged += new System.EventHandler(this.txtPassReg_TextChanged);
             // 
             // txtUserNameReg
             // 
@@ -93,6 +98,7 @@
             this.txtUserNameReg.Name = "txtUserNameReg";
             this.txtUserNameReg.Size = new System.Drawing.Size(134, 20);
             this.txtUserNameReg.TabIndex = 6;
+            this.txtUserNameReg.TextChanged += new System.EventHandler(this.txtUserNameReg_TextChanged);
             // 
             // label4
             // 
@@ -136,6 +142,7 @@
             // 
             // btnRegister2
             // 
+            this.btnRegister2.Enabled = false;
             this.btnRegister2.Location = new System.Drawing.Point(120, 316);
             this.btnRegister2.Name = "btnRegister2";
             this.btnRegister2.Size = new System.Drawing.Size(162, 43);
