@@ -38,6 +38,12 @@ namespace register_login_learn
 
             userList = new ArrayList();
 
+            //اضافة 3 مستخدمين بشكل يدوي لتسهيل التجارب
+            userList.Add(new CUser("suleman", "123456", "suleman@suleman.com"));
+            userList.Add(new CUser("abumusab", "123456", "abumusab@abumusab.com"));
+            userList.Add(new CUser("aburabie3", "123456", "aburabie3@aburabie3.com"));
+
+
             btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
 
         }
