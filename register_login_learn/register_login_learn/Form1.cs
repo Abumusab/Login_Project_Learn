@@ -49,14 +49,18 @@ namespace register_login_learn
             userList.Add(new CUser(txtUserNameReg.Text, txtPassReg.Text, txtEmailReg.Text));
 
             //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
-            pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;
-            pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
+            //pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;  // لم تعد ضرورية
+            //pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
+
+
             //افراغ كل خانات التسجيل
             txtUserNameReg.Text = txtPassReg.Text = txtPassReg2.Text = txtEmailReg.Text = "";
             //اعادة الوان خلفية الخانات إلى أبيض
             txtUserNameReg.BackColor = txtPassReg.BackColor = txtPassReg2.BackColor = txtEmailReg.BackColor = Color.White;
             //تعطيل زر التسجيل الجديد مجدداً
             btnRegister2.Enabled = false;
+
+            timer_Register.Start();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -109,8 +113,10 @@ namespace register_login_learn
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            pnlRegister.Visible = true;
-            pnlLogin.Visible = false;
+            //pnlRegister.Visible = true;
+            //pnlLogin.Visible = false;
+
+            timer_Register.Start();
 
         }
 
@@ -160,8 +166,9 @@ namespace register_login_learn
         //________________________________________________________ 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            pnlRegister.Visible = false;
-            pnlLogin.Visible = true;
+            //pnlLogin.Visible = true;
+
+            timer_Register.Start();
         }
         //_______________________________________________________
         //زر تسجيل الدخول معطل حتى تحقق الشروط
@@ -185,7 +192,35 @@ namespace register_login_learn
             }
         }
 
+        private void timer_Register_Tick(object sender, EventArgs e)
+        {
+            if (this.Size.Width < 700)
+            {
+                while (this.Size.Width < 700)
+                {
+                    ActiveForm.Width += 5;
+                }
+                timer_Register.Stop();
+                
+                pnlRegister.Visible = true;
+                pnlRegister.Enabled = true;
 
+            }
+            else
+            {
+                pnlRegister.Visible = false;
+                pnlRegister.Enabled = false;
+                while (this.Size.Width > 361)
+                {
+                    ActiveForm.Width -= 5;
+                }
+
+
+                timer_Register.Stop();
+            }
+ 
+            
+        }
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {

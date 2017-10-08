@@ -33,9 +33,9 @@
             // 
             // btnSignout
             // 
-            this.btnSignout.Location = new System.Drawing.Point(362, 422);
+            this.btnSignout.Location = new System.Drawing.Point(278, 425);
             this.btnSignout.Name = "btnSignout";
-            this.btnSignout.Size = new System.Drawing.Size(93, 31);
+            this.btnSignout.Size = new System.Drawing.Size(243, 62);
             this.btnSignout.TabIndex = 0;
             this.btnSignout.Text = "تسجيل خروج";
             this.btnSignout.UseVisualStyleBackColor = true;
@@ -48,7 +48,8 @@
             this.ClientSize = new System.Drawing.Size(807, 510);
             this.Controls.Add(this.btnSignout);
             this.Name = "frmFirstPage";
-            this.Text = "frmFirstPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "أهلا بك";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFirstPage_FormClosed);
             this.ResumeLayout(false);
 
