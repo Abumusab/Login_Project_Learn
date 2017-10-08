@@ -115,7 +115,7 @@ namespace register_login_learn
         {
             //pnlRegister.Visible = true;
             //pnlLogin.Visible = false;
-
+            btnCreate.Visible = false;
             timer_Register.Start();
 
         }
@@ -167,7 +167,7 @@ namespace register_login_learn
         private void btnBack_Click(object sender, EventArgs e)
         {
             //pnlLogin.Visible = true;
-
+            btnCreate.Visible = true;
             timer_Register.Start();
         }
         //_______________________________________________________
