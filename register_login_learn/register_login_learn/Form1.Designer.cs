@@ -191,10 +191,11 @@
             this.pnlLogin.Controls.Add(this.label5);
             this.pnlLogin.Controls.Add(this.label6);
             this.pnlLogin.Controls.Add(this.btnLogin);
-            this.pnlLogin.Location = new System.Drawing.Point(-4, 2);
+            this.pnlLogin.Location = new System.Drawing.Point(-3, 2);
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(350, 458);
             this.pnlLogin.TabIndex = 1;
+        
             // 
             // btnCreate
             // 
@@ -273,7 +274,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(342, 464);
+            this.ClientSize = new System.Drawing.Size(343, 464);
             this.Controls.Add(this.pnlLogin);
             this.Controls.Add(this.pnlRegister);
             this.DoubleBuffered = true;
