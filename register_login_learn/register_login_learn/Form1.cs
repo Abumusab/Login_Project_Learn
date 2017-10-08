@@ -178,15 +178,10 @@ namespace register_login_learn
         }
         //_______________________________________________________
         //زر تسجيل الدخول معطل حتى تحقق الشروط
-        private void txtLogin_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txtLogin.Text))
-            {
-                //خلفية خانة اسم المستخدم خضراء حين يكون عدد حروف الاسم اكثر من 5 
-                txtLogin.BackColor = (txtLogin.Text.Length > 5) ? Color.LightGreen : Color.Red;
-                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
-            }
-        }
+        //private void txtLogin_TextChanged(object sender, EventArgs e)
+        //{
+
+        //}
 
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
@@ -207,7 +202,7 @@ namespace register_login_learn
                     ActiveForm.Width += 5;
                 }
                 timer_Register.Stop();
-                
+
                 pnlRegister.Visible = true;
                 pnlRegister.Enabled = true;
 
@@ -224,18 +219,21 @@ namespace register_login_learn
 
                 timer_Register.Stop();
             }
- 
-            
+
+
         }
+
 
         private void txtLogin_TextChanged(object sender, EventArgs e)
         {
+            if (!String.IsNullOrEmpty(txtLogin.Text))
+            {
+                //خلفية خانة اسم المستخدم خضراء حين يكون عدد حروف الاسم اكثر من 5 
+                txtLogin.BackColor = (txtLogin.Text.Length > 5) ? Color.LightGreen : Color.Red;
+                btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
+            }
 
         }
-
-  
-
-     
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
@@ -287,5 +285,27 @@ namespace register_login_learn
                 return false;
             }
         }
+
+
+        
+
+
+        #region أدوات
+
+
+        /*إختصارات
+         * Ctrl+K+D     تنسيق
+         * Ctrl+K+U     الغاء التعليق
+         * Ctrl+K+C     التحويل لتعليق
+         * 
+         * 
+         * 
+         * 
+         * 
+         * */
+        
+
+
+        #endregion
     }
 }
