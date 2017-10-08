@@ -133,6 +133,15 @@ namespace register_login_learn
         }
         //__________________________________________________________
 
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+  
+
+     
+
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
            
