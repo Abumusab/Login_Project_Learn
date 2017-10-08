@@ -28,20 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnSignout = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnSignout
+            // 
+            this.btnSignout.Location = new System.Drawing.Point(278, 425);
+            this.btnSignout.Name = "btnSignout";
+            this.btnSignout.Size = new System.Drawing.Size(243, 62);
+            this.btnSignout.TabIndex = 0;
+            this.btnSignout.Text = "تسجيل خروج";
+            this.btnSignout.UseVisualStyleBackColor = true;
+            this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
             // 
             // frmFirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 510);
+            this.Controls.Add(this.btnSignout);
             this.Name = "frmFirstPage";
-            this.Text = "frmFirstPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "أهلا بك";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFirstPage_FormClosed);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnSignout;
     }
 }

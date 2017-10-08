@@ -12,14 +12,28 @@ namespace register_login_learn
 {
     public partial class frmFirstPage : Form
     {
-        frmLogin frm1 = new frmLogin();
+        // الطريقة الأفضل لاظهار و اغلاق الفورمس
+        //https://stackoverflow.com/questions/4123347/get-back-hidden-form-from-another-form
+
+        public frmLogin RefToForm1 { get; set; }
         public frmFirstPage()
         {
             InitializeComponent();
+            //this.Hide(); عند اغلاق الصفحة الآولى و تبقى هذا الصفحة مخفية فلن يبق طريقة لاغلاق البرنامج
+
         }
 
         private void frmFirstPage_FormClosed(object sender, FormClosedEventArgs e)
         {
         }
+
+        private void btnSignout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            //new frmLogin().ShowDialog();
+            this.RefToForm1.Show();
+        }
+
+
     }
 }
