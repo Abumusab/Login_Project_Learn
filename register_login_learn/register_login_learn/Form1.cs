@@ -14,8 +14,17 @@ namespace register_login_learn
 
     public partial class frmLogin : Form
     {
-        ArrayList userList;
 
+
+        /// <summary>
+        /// الطريقة الأفضل لاظهار و اغلاق الفورمس
+        /// https://stackoverflow.com/questions/4123347/get-back-hidden-form-from-another-form
+        /// في هذه الطريق لن يتم انشاء فورم تسجيل الدخول مجدداً كل مرة
+        /// نرجع فيها من الفورم الثاني
+        /// بهذه الحالة تبقى البيانات مخزنة في قائمة تخزين المستخدمين المسجلين
+        /// </summary>
+
+        ArrayList userList;
         bool loginUserOK;
         bool regiserUserOK = true;
         bool regNameOK, regPassOK, regPassSureOK, regEmailOK;
@@ -28,7 +37,7 @@ namespace register_login_learn
         {
 
             userList = new ArrayList();
-        
+
             btnLogin.Enabled = ((txtLogin.Text.Length > 5) && (txtPass.Text.Length > 5)) ? true : false;
 
         }
@@ -40,56 +49,52 @@ namespace register_login_learn
             userList.Add(new CUser(txtUserNameReg.Text, txtPassReg.Text, txtEmailReg.Text));
 
             //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
-            pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;
-            pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
+            //pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;  // لم تعد ضرورية
+            //pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
+
+
             //افراغ كل خانات التسجيل
             txtUserNameReg.Text = txtPassReg.Text = txtPassReg2.Text = txtEmailReg.Text = "";
             //اعادة الوان خلفية الخانات إلى أبيض
             txtUserNameReg.BackColor = txtPassReg.BackColor = txtPassReg2.BackColor = txtEmailReg.BackColor = Color.White;
             //تعطيل زر التسجيل الجديد مجدداً
             btnRegister2.Enabled = false;
+
+            timer_Register.Start();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
             //تم حل المشكلة بإزالة
             //do while
-
-
 
             foreach (CUser user in userList)
             {
                 loginUserOK = (user.UserName == txtLogin.Text) ? true : false;
             }
 
-
-
-
             if (loginUserOK)
             {
-                
-                  //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
-                 
-                if (loginUserOK)
-                {
-                    this.Hide();
-                }
+
+                //بعد تسجيل دخولك بنجاح راح يتخفي الفورم حق التسجيل الدخول
+
+                //this.Hide();
+                frmFirstPage obj2 = new frmFirstPage();
+                obj2.RefToForm1 = this;
+                this.Visible = false;
 
                 // عرض رسالة بعد تسجيل دخولك
                 MessageBox.Show("مرحباً بك , " + txtLogin.Text,//الرسالة
                   "تم تسجيل دخولك بنجاح",//العنوان
                   MessageBoxButtons.OK,//زر موافق
                   MessageBoxIcon.Asterisk // الايقونة 
-
                   );
-
                 // اظهار الفورم بعد التسجيل الدخول
+                obj2.Show();
 
-                frmFirstPage frm2 = new frmFirstPage();
-                frm2.ShowDialog();
-
-
+                //frmFirstPage frm2 = new frmFirstPage();
+                //frm2.ShowDialog();
 
             }
             else
@@ -100,18 +105,18 @@ namespace register_login_learn
                  MessageBoxButtons.OK,//زر موافق
                  MessageBoxIcon.Error // الايقونة 
                  );
-                
+
             }
 
-
-            
 
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            pnlRegister.Visible = true;
-            pnlLogin.Visible = false;
+            //pnlRegister.Visible = true;
+            //pnlLogin.Visible = false;
+            btnCreate.Visible = false;
+            timer_Register.Start();
 
         }
 
@@ -159,11 +164,12 @@ namespace register_login_learn
 
         // vv تم إضافة زر رجوع لقائمة تسجيل الدخول vv
         //________________________________________________________ 
-        private void btnBack_Click(object sender, EventArgs e)     
-        {                                                               
-            pnlRegister.Visible = false;                           
-            pnlLogin.Visible = true;                               
-        }                                                         
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            //pnlLogin.Visible = true;
+            btnCreate.Visible = true;
+            timer_Register.Start();
+        }
         //_______________________________________________________
         //زر تسجيل الدخول معطل حتى تحقق الشروط
         private void txtLogin_TextChanged(object sender, EventArgs e)
@@ -186,7 +192,35 @@ namespace register_login_learn
             }
         }
 
-        
+        private void timer_Register_Tick(object sender, EventArgs e)
+        {
+            if (this.Size.Width < 700)
+            {
+                while (this.Size.Width < 700)
+                {
+                    ActiveForm.Width += 5;
+                }
+                timer_Register.Stop();
+                
+                pnlRegister.Visible = true;
+                pnlRegister.Enabled = true;
+
+            }
+            else
+            {
+                pnlRegister.Visible = false;
+                pnlRegister.Enabled = false;
+                while (this.Size.Width > 361)
+                {
+                    ActiveForm.Width -= 5;
+                }
+
+
+                timer_Register.Stop();
+            }
+ 
+            
+        }
 
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
