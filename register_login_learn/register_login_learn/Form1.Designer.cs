@@ -278,10 +278,12 @@
             this.Controls.Add(this.pnlRegister);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.KeyPreview = true;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLogin_KeyDown);
             this.pnlRegister.ResumeLayout(false);
             this.pnlRegister.PerformLayout();
             this.pnlLogin.ResumeLayout(false);

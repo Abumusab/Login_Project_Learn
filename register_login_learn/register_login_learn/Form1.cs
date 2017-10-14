@@ -235,6 +235,22 @@ namespace register_login_learn
 
         }
 
+        private void frmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (btnCreate.IsAccessible == false)
+                {
+                    btnRegister2.PerformClick();
+                }
+                else
+                {
+                    btnLogin.PerformClick();
+
+                }
+            }
+        }
+
         private void txtPassReg2_TextChanged(object sender, EventArgs e)
         {
 
