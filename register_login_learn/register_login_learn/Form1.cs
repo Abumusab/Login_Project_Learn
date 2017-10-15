@@ -53,7 +53,8 @@ namespace register_login_learn
 
             // اضافة اوبجكت جديد من الكلاس يوزر لليست
             userList.Add(new CUser(txtUserNameReg.Text, txtPassReg.Text, txtEmailReg.Text));
-
+            //اعادة اظهار زر التسجيل بعد التسجيل
+            btnCreate.Visible = true;
             //اظهار عناصر تسجيل الدخول و اخفاء عناصر التسجيل الجديد
             //pnlLogin.Visible = (pnlLogin.Visible == false) ? true : false;  // لم تعد ضرورية
             //pnlRegister.Visible = (pnlRegister.Visible == true) ? false : true;
